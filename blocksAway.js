@@ -7,8 +7,9 @@ const blocksAway = function(directions) {
   // if 90, go right
   // if 0, go up
   // if -90, go left
-  let taxiDirection = 0
-  let taxiPosition = [0, 0]
+  let taxiDirection = 0;
+  let taxiPosition = [0, 0];
+  let directionObj = {};
   if (directions[0] === "right") {
     taxiDirection += 90;
     taxiPosition[0] += directions[1];
@@ -19,15 +20,39 @@ const blocksAway = function(directions) {
   }
   for (let i = 2; i < directions.length; i++ ) {
     if (directions[i] === "right") {
-      taxiDirection += 90;
-      taxiPosition[0] += directions[i + 1]
+      taxiDirection += 90; 
+      if (taxiDirection === -90 || taxiDirection === 270) {
+        taxiPosition[0] -= directions[i + 1];
+      }
+      if (taxiDirection === 0 || taxiDirection === 360) {
+        taxiPosition[1] += directions[i + 1];
+      }
+      if (taxiDirection === 90) {
+        taxiPosition[0] += directions[i + 1];
+      }
+      if (taxiDirection === 180) {
+        taxiPosition[1] -= directions[i + 1];
+      }
     }
     if (directions[i] === "left") {
       taxiDirection -= 90;
-      taxiPosition[1] += directions[i + 1]
+      if (taxiDirection === -90 || taxiDirection === 270) {
+        taxiPosition[0] -= directions[i + 1];
+      }
+      if (taxiDirection === 0 || taxiDirection === 360) {
+        taxiPosition[1] += directions[i + 1];
+      }
+      if (taxiDirection === 90 || taxiDirection === 450) {
+        taxiPosition[0] += directions[i + 1];
+      }
+      if (taxiDirection === 180 || taxiDirection === 540) {
+        taxiPosition[1] -= directions[i + 1];
+      }
     }
   }
-  console.log(taxiPosition);
+  directionObj.east = taxiPosition[0];
+  directionObj.north = taxiPosition[1];
+  return directionObj;
 };
 
 console.log(blocksAway(["right", 2, "left", 3, "left", 1]));
