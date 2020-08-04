@@ -6,22 +6,18 @@ const calculateSalesTax = function(salesData, taxRates) {
     let locationTaxes = 0;
       if (!obj[company.name]) {
         obj[company.name] = {totalSales: null, totalTaxes: null}
-        for (let i = 0; i < company.sales.length; i++) {
-          locationTotalSales += company.sales[i];
-        }
       }
-      else {
-        
+      for (let i = 0; i < company.sales.length; i++) {
+        locationTotalSales += company.sales[i];
       }
       taxKeys = Object.keys(taxRates);
-      console.log(taxKeys);
       for (let i = 0; i < taxKeys.length; i++) {
         if (company.province === taxKeys[i]) {
           locationTaxes = locationTotalSales * taxRates[taxKeys[i]];
         }
       }
-      obj[company.name].totalSales = locationTotalSales;
-      obj[company.name].totalTaxes = locationTaxes;
+      obj[company.name].totalSales += locationTotalSales;
+      obj[company.name].totalTaxes += locationTaxes;
     }
   return obj
   // grab name, put it into new array
