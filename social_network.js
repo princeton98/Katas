@@ -12,6 +12,35 @@ const biggestFollower = function (data) {
   return bigName;
 }
 
+const mostPopular = function (data) {
+  //loop through object
+  // add every key id into new object
+  // go into follows array, loop through array, if keyid is in array, add one to new object
+  let newObj = {};
+  for (let key in data) {
+    for (let follow of data[key].follows) {
+      if (!newObj[follow]) {
+        newObj[follow] = null;
+      }
+      for (let key1 in data){
+        if (follow === key1) {
+          newObj[key1] += 1
+        }
+      }
+    }
+  }
+  let popular = ""
+  let followers = 0;
+  for (let person in newObj) {
+    if (followers < newObj[person]) {
+      followers = newObj[person];
+      popular = data[person].name;
+    }
+  }
+  return popular;
+  console.log(newObj);
+}
+
 const data = {
   f01: {
     name: "Alice",
@@ -46,3 +75,4 @@ const data = {
 };
 
 console.log(biggestFollower(data));
+mostPopular(data);
