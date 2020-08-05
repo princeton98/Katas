@@ -38,6 +38,28 @@ const mostPopular = function (data) {
     }
   }
   return popular;
+}
+
+const printAll = function (data) {
+  //output a list (object)
+  //iterate over data object
+  //grab name, insert that into new object
+  //follows: iterate through follows array, grab id, match it to name, and push that name into follows object
+  //following: iterate over everyone's follows, check if it matches with their id, push their name onto the following key
+  let newObj = {};
+  for (let key in data) {
+    newObj[data[key].name] = {following: [], followers: []};
+    //followers
+    for (let person of data[key].follows) {
+      newObj[data[key].name].followers.push(data[person].name);
+    }
+  }
+  for (let key1 in data) {
+    for (let follow of data[key1].follows) {
+     newObj[data[follow].name].following.push(data[key1].name)
+    }
+  } 
+
   console.log(newObj);
 }
 
@@ -75,4 +97,5 @@ const data = {
 };
 
 console.log(biggestFollower(data));
-mostPopular(data);
+console.log(mostPopular(data));
+printAll(data);
