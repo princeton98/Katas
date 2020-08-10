@@ -54,13 +54,29 @@ const printAll = function (data) {
       newObj[data[key].name].followers.push(data[person].name);
     }
   }
+  //following
   for (let key1 in data) {
     for (let follow of data[key1].follows) {
-     newObj[data[follow].name].following.push(data[key1].name)
+     newObj[data[follow].name].following.push(data[key1].name);
     }
   } 
+  return newObj;
+}
 
-  console.log(newObj);
+const unrequitedFollowers = function(data) {
+  // list of names (array)
+  // use previous function
+  // check following and followers, if a name is not in both, push obj.name into array
+  let names = [];
+  let obj = printAll(data);
+  for (let person in obj) {
+    for (let follow of obj[person].following) {
+      if (!obj[person].followers.includes(follow) && !names.includes(person)) {
+        names.push(person);
+      }
+    }
+  }
+  return names;
 }
 
 const data = {
@@ -98,4 +114,5 @@ const data = {
 
 console.log(biggestFollower(data));
 console.log(mostPopular(data));
-printAll(data);
+console.log(printAll(data));
+console.log(unrequitedFollowers(data));
