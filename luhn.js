@@ -8,18 +8,17 @@ const check = function(number) {
   console.log(newNumber[0]);
   for (let i = numLength - 1; i >= 0; i -= 2) {
     if (Number(newNumber[i]) * 2 > 9) {
-      console.log("hello")
       result = Number(newNumber[i]) * 2;
       result = result.toString();
-      console.log(typeof result);
-      console.log(result);
       newNum += Number(result[0]) + Number(result[1]);
+      newNum += Number(newNumber[i-1])
     }
     else {
-      console.log("hello else")
       newNum += Number(newNumber[i]) * 2;
+      newNum += Number(newNumber[i-1]);
     }
   }
+  let checkDigit = (newNum * 9) % 10 ;
   console.log(newNum);
   number[number.length - 1]
   if (newNum % 10 === 0) {
