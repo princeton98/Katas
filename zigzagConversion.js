@@ -1,15 +1,10 @@
 const convert = function(s, numRows) {
-    // first column, add letter to different rows
-    // then, add letter to one before last, and continue on until it reaches the first row
-    // repeat
-    // numRows determines the variables
     let rows = [];
     let repeatSpot = numRows;
     let finalWord = "";
     for (let l = numRows - 2; l > 0; l--) {
         repeatSpot++;
     }
-    console.log(repeatSpot);
     for (let i = 0; i < numRows; i++) {
         rows.push([s[i]]);;
     }
@@ -22,9 +17,11 @@ const convert = function(s, numRows) {
                 }
             }
         }
-        while ((numRows - 2) - j !== 0 && s[numRows + k + j]) {
+        if (numRows >= 2) {
+             while ((numRows - 2) - j !== 0 && s[numRows + k + j]) {
             rows[(numRows - 2) - j].push(s[numRows + k + j]);
             j++;
+        }
         }
     }
     for (let i = 0; i < numRows; i++) {
