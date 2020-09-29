@@ -8,6 +8,9 @@ const isMatch = function(s, p) {
             if (p[i-1] === ".") {
                 tempWord += s[i]
             } else {
+                if (p[i-1] !== s[i]) {
+                    
+                }
                 tempWord += p[i-1];    
             }
         } else if (p[i] === ".") {
