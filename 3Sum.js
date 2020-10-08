@@ -11,12 +11,12 @@ const threeSum = function(nums) {
                     } else {
                     for (let m = 0; m < finalArr.length; m++) {
                    // if (finalArr[m].includes(nums[i]) && finalArr[m].includes(nums[j]) && finalArr[m].includes(nums[k])) {
-                    if ((finalArr[m].includes(nums[i]) && finalArr[m].includes(nums[j]) && finalArr[m].includes(nums[k]) && (nums[i] !== nums[j] && nums[i] !== nums[k]))) {
+                    if ((finalArr[m].includes(nums[i]) && finalArr[m].includes(nums[j]) && finalArr[m].includes(nums[k])) && (nums[i] !== nums[j] || nums[i] !== nums[k])) {
                     console.log("hello");
                     finalConfirm = false;
                     }
                 }
-                if (finalConfirm) {
+                if (finalConfirm && (nums[i] !== nums[j] || nums[i] !== nums[k])) {
                     console.log("hello final confirm");
                     finalArr.push([nums[i], nums[j], nums[k]]);
                 }
