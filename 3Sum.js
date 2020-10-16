@@ -10,13 +10,15 @@ const threeSum = function(nums) {
                         finalArr.push([nums[i], nums[j], nums[k]]);
                     } else {
                     for (let m = 0; m < finalArr.length; m++) {
-                   // if (finalArr[m].includes(nums[i]) && finalArr[m].includes(nums[j]) && finalArr[m].includes(nums[k])) {
-                    if ((finalArr[m].includes(nums[i]) && finalArr[m].includes(nums[j]) && finalArr[m].includes(nums[k])) && (nums[i] !== nums[j] || nums[i] !== nums[k])) {
-                    console.log("hello");
-                    finalConfirm = false;
-                    }
-                }
-                if (finalConfirm && (nums[i] !== nums[j] || nums[i] !== nums[k])) {
+                        if (finalArr[m] === [0,0,0] && nums[i] === 0 && nums[j] === 0 && nums[k] === 0) {
+                            
+                        }
+                           else if (finalArr[m].includes(nums[i]) && finalArr[m].includes(nums[j]) && finalArr[m].includes(nums[k])) {
+                           console.log("hello");
+                           finalConfirm = false;
+                           }
+                       }
+                if (finalConfirm) {
                     console.log("hello final confirm");
                     finalArr.push([nums[i], nums[j], nums[k]]);
                 }
@@ -29,4 +31,4 @@ const threeSum = function(nums) {
     return finalArr;
 }
 
-console.log(threeSum([-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0]));
+console.log(threeSum([0,0,0,0]));
